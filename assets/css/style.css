@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+*{
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+body{
+    font-family: "Roboto", sans-serif;
+    background-color: #E5E5E5;
+}
+
+body ion-icon {
+    cursor: pointer;
+}
+
+.container-titulo{
+    background-color: #ffffff;
+    box-shadow:  0px 4px 6px rgba(0, 0, 0, 0.05);
+    max-width: 614px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 40px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.container-principal{
+    
+    max-width: 614px;
+    width: 100%;
+    height: 800px;
+    margin-top: 106px;
+    margin-bottom: 80px;
+}
+
+.container-rodape{
+    background-color: #ffffff;
+    max-width: 614px;
+    height: 80px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 35px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    box-shadow:  0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.campo-texto{
+    color: #000000;
+    border: 0px;
+    height: 80px;
+    width: 100%;
+    font-size: 18px;
+    outline: none;
+}
+
+::placeholder{
+    color: #000000;
+    font-style: italic;
+}
+
+.mensagem{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.status{
+    background-color: #DCDCDC;
+}
+
+.publica{
+    background-color: #FFFFFF;
+}
+
+.reservada{
+    background-color: #FFDEDE;
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.hora{
+    color: #AAAAAA;
+}
+
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.menu{
+    background-color: #ffffff;
+    width: 70%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    
+}
+
+.voltarMenu{
+    width: 30%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.titulo-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    height: 80px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lista{
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.menu ion-icon {
+    font-size: 23px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.verde{
+    color: #28BB25;
+    position: absolute;
+    right: 10px;
+}
+
+.hidden{
+    display: none;
+}

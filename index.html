@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bate-Papo UOL</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header class="container-titulo">
+        <img src="./assets/images/logo.png">
+        <ion-icon name="people" onclick="mostrarMenu()"></ion-icon>
+    </header>
+    
+    <main class="container-principal">
+        <ul class="mensagens">
+            <li class="mensagem status">
+                <span class="hora">(08:49:55)</span><span class="bold"> Luan</span> entra na sala...
+            </li>
+            <li class="mensagem publica">
+                <span class="hora">(08:49:55)</span><span class="bold"> Luan</span> para <span class="bold">Todos</span>: Bom dia!
+            </li>
+            <li class="mensagem reservada">
+                <span class="hora">(08:49:55)</span><span class="bold"> Luan</span> reservadamente para <span class="bold">Michelle</span>: Oi!!!
+            </li>
+        </ul>
+    </main>
+
+    <footer class="container-rodape">
+        <input placeholder="Escreva aqui..." class="campo-texto" type="text">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+    </footer>
+
+    <div class="sidebar hidden">
+        <div class="voltarMenu" onclick="esconderMenu()"></div>
+        <nav class="menu">
+            <section>
+                <header class="titulo-section">
+                    Escolha um contato para enviar mensagem:
+                </header>
+                <ul class="lista-contatos">
+                    <li class="lista contatos" onclick="pickContact(this)">
+                        <ion-icon name="people"></ion-icon>
+                        <p>Todos</p>
+                        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                    </li>
+                    <li class="lista contatos" onclick="pickContact(this)">
+                        <ion-icon name="person-circle"></ion-icon>
+                        <p>Luan</p>
+                        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                    </li>
+                </ul>
+                <header class="titulo-section">
+                    Escolha a visibilidade:
+                </header>
+                <ul class="lista-visibilidade">
+                    <li class="lista visibilidade" onclick="pickVisibility(this)">
+                        <ion-icon name="lock-open"></ion-icon>
+                        <p>Público</p>
+                        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                    </li>
+                    <li class="lista visibilidade"  onclick="pickVisibility(this)">
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <p>Reservadamente</p>
+                        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                    </li>
+                </ul>
+            </section>
+            <section></section>
+        </nav>
+    </div>
+
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
