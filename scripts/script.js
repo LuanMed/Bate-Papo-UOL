@@ -1,10 +1,11 @@
 let mensagens = []; //pegar as mensagens salvas no servidor
 let nome = "";
+let novoNome = {};
 
 entrarNaSala();
 function entrarNaSala(){
     nome = prompt("Qual seu nome?");
-    const novoNome = {name: nome};
+    novoNome = {name: nome};
     const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoNome);
     promessa.then(pegarMensagens);
     promessa.catch(nomeDeuErro);
@@ -17,6 +18,12 @@ function nomeDeuErro(erro){
     }
 }
 
+setInterval(manterConexao, 5000);
+function manterConexao(){
+    const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", novoNome);
+}
+
+setInterval(pegarMensagens, 3000);
 function pegarMensagens(){
     // enviar a cartinha pedindo para pegar as mensagens salvas
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -34,25 +41,23 @@ function respostaChegou(resposta){
 
 function mandarMensagem(){
     const mensagemDigitada = document.querySelector('.campo-texto').value;
-    const hora = new Date().toLocaleTimeString();
     const novaMensagem = {
         from: nome,
         to: "Todos",
         text: mensagemDigitada,
         type: "message",
     };
-    console.log(novaMensagem)
-    //mensagens.push(novaMensagem);
+    
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem);
     promise.then(pegarMensagens);
     promise.catch(deuErrado);
     
-    //mostrarMensagens();
     document.querySelector('.campo-texto').value="";
 }
 
-function deuErrado(erro) {
-    console.log(erro);
+function deuErrado() {
+    alert(`Ocorreu um erro, aparentemente você não está mais na sala.\nVamos atualizar para que possa entrar novamente.`)
+    window.location.reload()
 }
 
 function mostrarMensagens(){
@@ -73,7 +78,7 @@ function mostrarMensagens(){
                  para <span class="bold">${mensagens[i].to}</span>: ${mensagens[i].text}
             </li>
             `
-        } else if (mensagens[i].type == "private_message"){
+        } else if (mensagens[i].type == "private_message" && mensagens[i].to == nome){
             listaMensagens.innerHTML += `
             <li class="mensagem reservada">
                 <span class="hora">(${mensagens[i].time})</span><span class="bold"> ${mensagens[i].from}</span>
@@ -82,12 +87,10 @@ function mostrarMensagens(){
             `
         }
     }
+    const ultimaMensagem = document.querySelectorAll('.mensagens li');
+    ultimaMensagem[99].scrollIntoView();
+    console.log(ultimaMensagem[99]);
 }
-
-
-
-
-
 
 
 
