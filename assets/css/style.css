@@ -100,7 +100,6 @@ body ion-icon {
 /*-------------------------------------------bônus------------------------------------------------------*/
 
 .sidebar {
-    background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -121,6 +120,7 @@ body ion-icon {
 }
 
 .voltarMenu{
+    background-color: rgba(0, 0, 0, 0.6);
     width: 30%;
     position: fixed;
     top: 0;

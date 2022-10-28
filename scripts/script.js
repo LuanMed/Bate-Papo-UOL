@@ -24,6 +24,7 @@ function manterConexao(){
 }
 
 setInterval(pegarMensagens, 3000);
+
 function pegarMensagens(){
     // enviar a cartinha pedindo para pegar as mensagens salvas
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
@@ -92,11 +93,14 @@ function mostrarMensagens(){
     console.log(ultimaMensagem[99]);
 }
 
+// ------------------------------------------ implementação dos bônus -----------------------------------------------
 
-
-
-
-
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+        const simularClique = document.querySelector("#submit");
+        simularClique.click();
+    }
+  });
 
 function mostrarMenu(){
     const menuLateral = document.querySelector(".sidebar")
