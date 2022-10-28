@@ -22,9 +22,11 @@
 
         <footer class="container-rodape">
             <input placeholder="Escreva aqui..." class="campo-texto" type="text">
+            <p class="tipo-mensagem">Enviando para Todos</p>
             <ion-icon id="submit" name="paper-plane-outline" onclick="mandarMensagem()"></ion-icon>
         </footer>
 
+<!----------------------------------------- Bônus ----------------------------------------->
         <div class="sidebar hidden">
             <div class="voltarMenu" onclick="esconderMenu()"></div>
             <nav class="menu">
@@ -33,34 +35,28 @@
                         Escolha um contato para enviar mensagem:
                     </header>
                     <ul class="lista-contatos">
-                        <li class="lista contatos" onclick="pickContact(this)">
+                        <li class="lista contatos selecionado" onclick="pickContact(this)">
                             <ion-icon name="people"></ion-icon>
-                            <p>Todos</p>
-                            <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
-                        </li>
-                        <li class="lista contatos" onclick="pickContact(this)">
-                            <ion-icon name="person-circle"></ion-icon>
-                            <p>Luan</p>
-                            <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                            <p class="contato">Todos</p>
+                            <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
                         </li>
                     </ul>
                     <header class="titulo-section">
                         Escolha a visibilidade:
                     </header>
                     <ul class="lista-visibilidade">
-                        <li class="lista visibilidade" onclick="pickVisibility(this)">
+                        <li class="lista visibilidade selecionado" onclick="pickVisibility(this)">
                             <ion-icon name="lock-open"></ion-icon>
-                            <p>Público</p>
-                            <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                            <p class="tipoMensagem">Público</p>
+                            <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
                         </li>
                         <li class="lista visibilidade"  onclick="pickVisibility(this)">
                             <ion-icon name="lock-closed"></ion-icon>
-                            <p>Reservadamente</p>
+                            <p class="tipoMensagem">Reservadamente</p>
                             <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
                         </li>
                     </ul>
                 </section>
-                <section></section>
             </nav>
         </div>
     </div>

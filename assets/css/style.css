@@ -43,9 +43,6 @@ body ion-icon {
     background-color: #ffffff;
     max-width: 614px;
     height: 80px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
     font-size: 35px;
     position: fixed;
@@ -59,10 +56,16 @@ body ion-icon {
 .campo-texto{
     color: #000000;
     border: 0px;
-    height: 80px;
+    height: 60px;
     width: 100%;
     font-size: 18px;
     outline: none;
+}
+
+#submit{
+    position: fixed;
+    right: 4%;
+    bottom: 3%;
 }
 
 ::placeholder{
@@ -91,6 +94,7 @@ body ion-icon {
 
 .bold{
     font-weight: 700;
+    flex-wrap: wrap;
 }
 
 .hora{
@@ -116,6 +120,7 @@ body ion-icon {
     bottom: 0;
     right: 0;
     z-index: 2;
+    overflow-y: auto;
     
 }
 
@@ -160,4 +165,10 @@ body ion-icon {
 
 .hidden{
     display: none;
+}
+
+.tipo-mensagem{
+    font-size: 14px;
+    font-weight: 300;
+    color: #505050;
 }

@@ -1,6 +1,9 @@
 let mensagens = []; //pegar as mensagens salvas no servidor
+let contatos = [];
 let nome = "";
 let novoNome = {};
+let messageType = "message";
+let qualContato = "Todos";
 
 entrarNaSala();
 function entrarNaSala(){
@@ -44,9 +47,9 @@ function mandarMensagem(){
     const mensagemDigitada = document.querySelector('.campo-texto').value;
     const novaMensagem = {
         from: nome,
-        to: "Todos",
+        to: qualContato,
         text: mensagemDigitada,
-        type: "message",
+        type: messageType,
     };
     
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", novaMensagem);
@@ -65,7 +68,15 @@ function mostrarMensagens(){
     const listaMensagens = document.querySelector(".mensagens");
     listaMensagens.innerHTML = "";
 
+
     for (let i = 0; i < mensagens.length; i++){
+        if (mensagens[i].from.length > 15){
+            mensagens[i].from = mensagens[i].from.substring(0,15) + "...";
+        }
+        if (mensagens[i].to.length > 15){
+            mensagens[i].to = mensagens[i].to.substring(0,15) + "...";
+        }
+
         if(mensagens[i].type == "status"){
             listaMensagens.innerHTML += `
             <li class="mensagem status">
@@ -79,7 +90,7 @@ function mostrarMensagens(){
                  para <span class="bold">${mensagens[i].to}</span>: ${mensagens[i].text}
             </li>
             `
-        } else if (mensagens[i].type == "private_message" && mensagens[i].to == nome){
+        } else if (mensagens[i].type == "private_message" && (mensagens[i].to == nome || mensagens[i].from == nome)){
             listaMensagens.innerHTML += `
             <li class="mensagem reservada">
                 <span class="hora">(${mensagens[i].time})</span><span class="bold"> ${mensagens[i].from}</span>
@@ -89,18 +100,48 @@ function mostrarMensagens(){
         }
     }
     const ultimaMensagem = document.querySelectorAll('.mensagens li');
-    ultimaMensagem[99].scrollIntoView();
-    console.log(ultimaMensagem[99]);
+    ultimaMensagem[ultimaMensagem.length-1].scrollIntoView();
 }
 
 // ------------------------------------------ implementação dos bônus -----------------------------------------------
 
+// Enviar mensagem com ENTER
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {
         const simularClique = document.querySelector("#submit");
         simularClique.click();
     }
   });
+
+// Pegar contatos do servidor
+pegarContatos();
+setInterval(pegarContatos, 10000);
+function pegarContatos() {
+    const promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants")
+    promessa.then(mostrarContatos);
+}
+
+function mostrarContatos(resposta){
+    contatos = resposta.data;
+
+    const listaContatos = document.querySelector(".lista-contatos");
+    listaContatos.innerHTML = `<li class="lista contatos selecionado" onclick="pickContact(this)">
+    <ion-icon name="people"></ion-icon>
+    <p class="contato">Todos</p>
+    <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
+</li>`;
+
+    for (let i = 0; i < contatos.length; i++){
+        if (contatos[i].name.length > 15){
+            contatos[i].name = contatos[i].name.substring(0,15) + "...";
+        }
+        listaContatos.innerHTML += `<li class="lista contatos" onclick="pickContact(this)">
+        <ion-icon name="person-circle"></ion-icon>
+        <p class="contato">${contatos[i].name}</p>
+        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+    </li>`
+    }
+}
 
 function mostrarMenu(){
     const menuLateral = document.querySelector(".sidebar")
@@ -121,19 +162,43 @@ function pickContact(selected){
     }
 
     selected.classList.add("selecionado");
-    const elementSelecionado = document.querySelector(".lista-contatos .selecionado .verde")
+    const elementSelecionado = document.querySelector(".lista-contatos .selecionado .verde");
     elementSelecionado.classList.remove("hidden");
+
+    const pessoaSel = document.querySelector(".lista-contatos .selecionado .contato");
+    qualContato = pessoaSel.innerHTML;
+
+    informacaoSecundaria()
 }
 
 function pickVisibility(selected){
     const selecionadoAntes = document.querySelector(".lista-visibilidade .selecionado");
     if (selecionadoAntes !== null){
-        const elementSelecionado = document.querySelector(".lista-visibilidade .selecionado .verde")
+        const elementSelecionado = document.querySelector(".lista-visibilidade .selecionado .verde");
         elementSelecionado.classList.add("hidden");
         selecionadoAntes.classList.remove("selecionado");
     }
 
     selected.classList.add("selecionado");
-    const elementSelecionado = document.querySelector(".lista-visibilidade .selecionado .verde")
+    const elementSelecionado = document.querySelector(".lista-visibilidade .selecionado .verde");
     elementSelecionado.classList.remove("hidden");
+
+    
+    const tipoSel = document.querySelector(".lista-visibilidade .selecionado .tipoMensagem");
+    let tipoDaMensagem = tipoSel.innerHTML;
+    if (tipoDaMensagem === "Público"){
+        messageType = "message";
+    } else {
+        messageType = "private_message"
+    }
+    informacaoSecundaria();
+}
+
+function informacaoSecundaria() {
+    const confirmando = document.querySelector(".tipo-mensagem");
+    if (messageType == "private_message"){
+        confirmando.innerHTML = `Enviando para ${qualContato} (Reservadamente)`;
+    } else {
+        confirmando.innerHTML = `Enviando para ${qualContato}`;
+    }
 }
