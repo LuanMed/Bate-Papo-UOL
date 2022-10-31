@@ -153,7 +153,7 @@ function mostrarContatos(resposta){
     contatos = resposta.data;
 
     const listaContatos = document.querySelector(".lista-contatos");
-    listaContatos.innerHTML = `<li class="lista contatos selecionado" onclick="pickContact(this)">
+    listaContatos.innerHTML = `<li data-identifier="participant" class="lista contatos selecionado" onclick="pickContact(this)">
     <ion-icon name="people"></ion-icon>
     <p class="contato">Todos</p>
     <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
@@ -163,7 +163,7 @@ function mostrarContatos(resposta){
         if (contatos[i].name.length > 15){
             contatos[i].name = contatos[i].name.substring(0,15) + "...";
         }
-        listaContatos.innerHTML += `<li class="lista contatos" onclick="pickContact(this)">
+        listaContatos.innerHTML += `<li data-identifier="participant" class="lista contatos" onclick="pickContact(this)">
         <ion-icon name="person-circle"></ion-icon>
         <p class="contato">${contatos[i].name}</p>
         <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>

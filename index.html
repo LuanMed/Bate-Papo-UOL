@@ -12,8 +12,8 @@
     <div class="tela-login">
         <div class="container-login">
             <img class="imagem-login" src="./assets/images/logo2.png">
-            <input class="campo-nome" type="text" placeholder="Digite seu nome">
-            <button onclick="entrarNaSala()">Entrar</button>
+            <input data-identifier="enter-name" class="campo-nome" type="text" placeholder="Digite seu nome">
+            <button data-identifier="start" onclick="entrarNaSala()">Entrar</button>
         </div>
         <div class="container-loading hidden">
             <img class="imagem-login" src="./assets/images/logo2.png">
@@ -50,22 +50,17 @@
                         Escolha um contato para enviar mensagem:
                     </header>
                     <ul class="lista-contatos">
-                        <li class="lista contatos selecionado" onclick="pickContact(this)">
-                            <ion-icon name="people"></ion-icon>
-                            <p class="contato">Todos</p>
-                            <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
-                        </li>
                     </ul>
                     <header class="titulo-section">
                         Escolha a visibilidade:
                     </header>
                     <ul class="lista-visibilidade">
-                        <li class="lista visibilidade selecionado" onclick="pickVisibility(this)">
+                        <li data-identifier="visibility" class="lista visibilidade selecionado" onclick="pickVisibility(this)">
                             <ion-icon name="lock-open"></ion-icon>
                             <p class="tipoMensagem">Público</p>
                             <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
                         </li>
-                        <li class="lista visibilidade"  onclick="pickVisibility(this)">
+                        <li data-identifier="visibility" class="lista visibilidade"  onclick="pickVisibility(this)">
                             <ion-icon name="lock-closed"></ion-icon>
                             <p class="tipoMensagem">Reservadamente</p>
                             <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
