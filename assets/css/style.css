@@ -78,6 +78,7 @@ body ion-icon {
     font-size: 14px;
     padding: 10px;
     margin-bottom: 5px;
+    word-wrap: break-word;
 }
 
 .status{
