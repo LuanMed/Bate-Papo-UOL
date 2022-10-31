@@ -43,6 +43,9 @@ body ion-icon {
     background-color: #ffffff;
     max-width: 614px;
     height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
     font-size: 35px;
     position: fixed;
@@ -53,19 +56,17 @@ body ion-icon {
     box-shadow:  0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
+.escreva-aqui{
+    width: 95%;
+}
+
 .campo-texto{
     color: #000000;
     border: 0px;
-    height: 60px;
+    height: 55px;
     width: 100%;
     font-size: 18px;
     outline: none;
-}
-
-#submit{
-    position: fixed;
-    right: 4%;
-    bottom: 3%;
 }
 
 ::placeholder{
@@ -78,6 +79,7 @@ body ion-icon {
     font-size: 14px;
     padding: 10px;
     margin-bottom: 5px;
+    word-wrap: break-word;
 }
 
 .status{
@@ -103,14 +105,7 @@ body ion-icon {
 
 /*-------------------------------------------bônus------------------------------------------------------*/
 
-.sidebar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-}
+
 
 .menu{
     background-color: #ffffff;
@@ -131,6 +126,7 @@ body ion-icon {
     top: 0;
     bottom: 0;
     left: 0;
+    z-index: 2;
 }
 
 .titulo-section{
@@ -151,6 +147,10 @@ body ion-icon {
     padding-left: 20px;
 }
 
+.contatos, .visibilidade{
+    cursor: pointer;
+}
+
 .menu ion-icon {
     font-size: 23px;
     margin-right: 10px;
@@ -163,12 +163,69 @@ body ion-icon {
     right: 10px;
 }
 
-.hidden{
-    display: none;
-}
-
 .tipo-mensagem{
     font-size: 14px;
     font-weight: 300;
     color: #505050;
+    padding-bottom: 10px;
+}
+
+.tela-login{
+    position: fixed;
+    background-color: #ffffff;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container-login, .container-loading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-login{
+    margin-top: 72px;
+    margin-bottom: 94px;
+}
+
+.tela-login input{
+    width: 261px;
+    height: 54px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.tela-login input::placeholder{
+    color: #AEAEAE;
+    text-align: center;
+    font-size: 18px;
+    font-style: normal;
+}
+
+.tela-login button{
+    width: 109px;
+    height: 45px;
+    font-size: 18px;
+    border: 0px;
+    border-radius: 9px;
+    color: #696969;
+    background-color: #E7E7E7;
+
+}
+
+.tela-login p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.hidden{
+    display: none;
 }

@@ -4,21 +4,42 @@ let nome = "";
 let novoNome = {};
 let messageType = "message";
 let qualContato = "Todos";
+let elementoLogin = {};
+let elementoLoading = {};
+let elementoMensagens = {};
+let elementoTelaLogin = {};
 
-entrarNaSala();
 function entrarNaSala(){
-    nome = prompt("Qual seu nome?");
+    nome = document.querySelector(".campo-nome").value;
     novoNome = {name: nome};
+    pegarElementos();
+    elementoLogin.classList.toggle("hidden");
+    elementoLoading.classList.toggle("hidden");
     const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", novoNome);
-    promessa.then(pegarMensagens);
+    document.querySelector(".campo-nome").value = "";
+    promessa.then(loginDeuCerto);
     promessa.catch(nomeDeuErro);
 }
 
 function nomeDeuErro(erro){
     if(erro.response.status === 400){
         alert("Esse nome já está em uso. Por favor, tente novamente.");
-        entrarNaSala();
+        elementoLoading.classList.toggle("hidden");
+        elementoLogin.classList.toggle("hidden");
     }
+}
+
+function pegarElementos(){
+    elementoLogin = document.querySelector(".container-login");
+    elementoLoading = document.querySelector(".container-loading");
+    elementoMensagens = document.querySelector(".container");
+    elementoTelaLogin = document.querySelector(".tela-login");
+}
+
+function loginDeuCerto(){
+    elementoTelaLogin.classList.add("hidden");
+    elementoMensagens.classList.remove("hidden");
+    pegarMensagens();
 }
 
 setInterval(manterConexao, 5000);
@@ -29,6 +50,7 @@ function manterConexao(){
 setInterval(pegarMensagens, 3000);
 
 function pegarMensagens(){
+
     // enviar a cartinha pedindo para pegar as mensagens salvas
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
 
@@ -105,7 +127,9 @@ function mostrarMensagens(){
 
 // ------------------------------------------ implementação dos bônus -----------------------------------------------
 
-// Enviar mensagem com ENTER
+
+
+// Enviar mensagem com ENTER -----------------------------------------------------------------
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {
         const simularClique = document.querySelector("#submit");
@@ -113,7 +137,11 @@ document.addEventListener("keypress", function(e) {
     }
   });
 
-// Pegar contatos do servidor
+// Tela de login -----------------------------------------------------------------------------
+
+
+
+// Pegar contatos do servidor ----------------------------------------------------------------
 pegarContatos();
 setInterval(pegarContatos, 10000);
 function pegarContatos() {

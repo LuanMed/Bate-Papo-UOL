@@ -9,7 +9,20 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="tela-login">
+        <div class="container-login">
+            <img class="imagem-login" src="./assets/images/logo2.png">
+            <input class="campo-nome" type="text" placeholder="Digite seu nome">
+            <button onclick="entrarNaSala()">Entrar</button>
+        </div>
+        <div class="container-loading hidden">
+            <img class="imagem-login" src="./assets/images/logo2.png">
+            <img src="./assets/images/loading.gif" alt="">
+            <p>Entrando...</p>
+        </div>
+    </div>
+    <div class="container hidden">
+        
         <header class="container-titulo">
             <img src="./assets/images/logo.png">
             <ion-icon name="people" onclick="mostrarMenu()"></ion-icon>
@@ -21,8 +34,10 @@
         </main>
 
         <footer class="container-rodape">
-            <input placeholder="Escreva aqui..." class="campo-texto" type="text">
-            <p class="tipo-mensagem">Enviando para Todos</p>
+            <div class="escreva-aqui">
+                <input placeholder="Escreva aqui..." class="campo-texto" type="text">
+                <p class="tipo-mensagem">Enviando para Todos</p>
+            </div>
             <ion-icon id="submit" name="paper-plane-outline" onclick="mandarMensagem()"></ion-icon>
         </footer>
 
