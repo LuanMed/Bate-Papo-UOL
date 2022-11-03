@@ -101,20 +101,20 @@ function mostrarMensagens(){
 
         if(mensagens[i].type == "status"){
             listaMensagens.innerHTML += `
-            <li class="mensagem status">
+            <li data-test="message" class="mensagem status">
                 <span class="hora">(${mensagens[i].time})</span><span class="bold"> ${mensagens[i].from}</span> ${mensagens[i].text}
             </li>
             `
         } else if (mensagens[i].type == "message"){
             listaMensagens.innerHTML += `
-            <li class="mensagem publica">
+            <li data-test="message" class="mensagem publica">
                 <span class="hora">(${mensagens[i].time})</span><span class="bold"> ${mensagens[i].from}</span>
                  para <span class="bold">${mensagens[i].to}</span>: ${mensagens[i].text}
             </li>
             `
         } else if (mensagens[i].type == "private_message" && (mensagens[i].to == nome || mensagens[i].from == nome)){
             listaMensagens.innerHTML += `
-            <li class="mensagem reservada">
+            <li data-test="message" class="mensagem reservada">
                 <span class="hora">(${mensagens[i].time})</span><span class="bold"> ${mensagens[i].from}</span>
                  para <span class="bold">${mensagens[i].to}</span>: ${mensagens[i].text}
             </li>
@@ -153,20 +153,20 @@ function mostrarContatos(resposta){
     contatos = resposta.data;
 
     const listaContatos = document.querySelector(".lista-contatos");
-    listaContatos.innerHTML = `<li data-identifier="participant" class="lista contatos selecionado" onclick="pickContact(this)">
+    listaContatos.innerHTML = `<li data-test="all" data-identifier="participant" class="lista contatos selecionado" onclick="pickContact(this)">
     <ion-icon name="people"></ion-icon>
     <p class="contato">Todos</p>
-    <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
+    <ion-icon data-test="check" class="verde" name="checkmark-sharp"></ion-icon>
 </li>`;
 
     for (let i = 0; i < contatos.length; i++){
         if (contatos[i].name.length > 15){
             contatos[i].name = contatos[i].name.substring(0,15) + "...";
         }
-        listaContatos.innerHTML += `<li data-identifier="participant" class="lista contatos" onclick="pickContact(this)">
+        listaContatos.innerHTML += `<li data-test="participant" data-identifier="participant" class="lista contatos" onclick="pickContact(this)">
         <ion-icon name="person-circle"></ion-icon>
         <p class="contato">${contatos[i].name}</p>
-        <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+        <ion-icon data-test="check" class="verde hidden" name="checkmark-sharp"></ion-icon>
     </li>`
     }
 }

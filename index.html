@@ -12,8 +12,8 @@
     <div class="tela-login">
         <div class="container-login">
             <img class="imagem-login" src="./assets/images/logo2.png">
-            <input data-identifier="enter-name" class="campo-nome" type="text" placeholder="Digite seu nome">
-            <button data-identifier="start" onclick="entrarNaSala()">Entrar</button>
+            <input data-test="input-name" data-identifier="enter-name" class="campo-nome" type="text" placeholder="Digite seu nome">
+            <button data-test="send-name" data-identifier="start" onclick="entrarNaSala()">Entrar</button>
         </div>
         <div class="container-loading hidden">
             <img class="imagem-login" src="./assets/images/logo2.png">
@@ -25,7 +25,7 @@
         
         <header class="container-titulo">
             <img src="./assets/images/logo.png">
-            <ion-icon name="people" onclick="mostrarMenu()"></ion-icon>
+            <ion-icon data-test="open-participants" name="people" onclick="mostrarMenu()"></ion-icon>
         </header>
         
         <main class="container-principal">
@@ -36,7 +36,7 @@
         <footer class="container-rodape">
             <div class="escreva-aqui">
                 <input placeholder="Escreva aqui..." class="campo-texto" type="text">
-                <p class="tipo-mensagem">Enviando para Todos</p>
+                <p data-test="recipient" class="tipo-mensagem">Enviando para Todos</p>
             </div>
             <ion-icon id="submit" name="paper-plane-outline" onclick="mandarMensagem()"></ion-icon>
         </footer>
@@ -55,15 +55,15 @@
                         Escolha a visibilidade:
                     </header>
                     <ul class="lista-visibilidade">
-                        <li data-identifier="visibility" class="lista visibilidade selecionado" onclick="pickVisibility(this)">
+                        <li data-test="public" data-identifier="visibility" class="lista visibilidade selecionado" onclick="pickVisibility(this)">
                             <ion-icon name="lock-open"></ion-icon>
                             <p class="tipoMensagem">Público</p>
-                            <ion-icon class="verde" name="checkmark-sharp"></ion-icon>
+                            <ion-icon data-test="check" class="verde" name="checkmark-sharp"></ion-icon>
                         </li>
-                        <li data-identifier="visibility" class="lista visibilidade"  onclick="pickVisibility(this)">
+                        <li data-test="private" data-identifier="visibility" class="lista visibilidade"  onclick="pickVisibility(this)">
                             <ion-icon name="lock-closed"></ion-icon>
                             <p class="tipoMensagem">Reservadamente</p>
-                            <ion-icon class="verde hidden" name="checkmark-sharp"></ion-icon>
+                            <ion-icon data-test="check" class="verde hidden" name="checkmark-sharp"></ion-icon>
                         </li>
                     </ul>
                 </section>
